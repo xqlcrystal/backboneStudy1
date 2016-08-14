@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="Scripts/jquery.1.11.1.js"></script>
+    <script type="text/javascript" src="Scripts/underscore.js"></script>
+    <script type="text/javascript" src="Scripts/backbone.js"></script>
+
+    <script type="text/javascript">
+//        var model=new Backbone.Model();
+//        model.set('name','xieql');
+//        alert(model.get('name'));
+
+//        var model=new Backbone.Model({'name':'Hello'});
+//        var model2=new Backbone.Model({'name':'xi2'});
+//        var collection=new Backbone.Collection();
+//        collection.add(model);
+//        collection.add(model2);
+//        alert(JSON.stringify(collection));
+
+//        var M=Backbone.Model.extend(
+//                {
+//                    aaa:function(){
+//                    alert(123);
+//                }
+//                },
+//                {
+//                    bbb:function(){
+//                    alert(456);
+//                }
+//                }
+//        );
+//
+//        var model1=new M();
+//        model1.aaa();
+//        M.bbb();
+
+
+//        var M=Backbone.Model.extend(
+//                {
+//                    defaults:{
+//                        name:"hello"
+//                    }
+//                }
+//        ) ;
+//
+//        var model=new M();
+//        alert(model.get('name'));
+
+//        var M=Backbone.Model.extend({
+//            aaa:function(){
+//                alert(123);
+//            }
+//        });
+//
+//        var childM= M.extend();
+//
+//        var child=new childM();
+//        child.aaa();
+
+//        var M=Backbone.Model.extend(
+//                {
+//                    defaults:{
+//                        name:"hello"
+//                    },
+//                    initialize:function(){
+//                        this.on('change',function(){
+//                            alert('change');
+//                        });
+//                    }
+//                }
+//        ) ;
+//
+//        var model=new M();
+//        model.set('name','hello123');
+
+
+
+//var M=Backbone.Model.extend(
+//        {
+//            defaults:{
+//                name:"hello"
+//            },
+//            initialize:function(){
+//                this.on('change:name',function(model){
+//                   console.log(model);
+//                });
+//            }
+//        }
+//) ;
+//
+//var model=new M();
+//model.set('name','hello123');
+//model.set('age',30);
+$(function(){
+
+
+var M=Backbone.Model.extend(
+        {
+            defaults:{
+                name:"hello"
+            }
+        }
+) ;
+
+var V=Backbone.View.extend(
+        {
+            initialize:function(){
+                this.listenTo(this.model,'change',this.show);
+            },
+            show:function(model){
+                $('body').append('<div>'+model.get('name')+'</div>>');
+
+            }
+        }
+);
+
+var m=new M();
+var v=new V({model:m});
+
+
+m.set('name','hi');
+});
+    </script>
+</head>
+<body>
+
+</body>
+</html>
